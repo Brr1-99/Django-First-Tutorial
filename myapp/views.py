@@ -7,7 +7,10 @@ def hello(request, username: str) -> HttpResponse:
     return HttpResponse(f"<h1> Hola Buenas {username} </h1>")
 
 def index(request) -> HttpResponse:
-    return render(request, template_name='index.html')
+    title = "Tremendisimo indice"
+    return render(request, template_name='index.html', context={
+        "title": title
+    })
 
 def subject(request) -> JsonResponse:
     subjects = list(Subject.objects.values())
