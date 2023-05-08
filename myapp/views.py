@@ -13,8 +13,10 @@ def index(request) -> HttpResponse:
     })
 
 def subject(request) -> JsonResponse:
-    subjects = list(Subject.objects.values())
-    return JsonResponse(subjects, safe=False)
+    subjects = Subject.objects.all()
+    return  render(request, template_name='subjects.html', context={
+        "subjects": subjects
+    })
 
 def subject_or_404(request, name: str) -> JsonResponse:
     subjects = get_object_or_404(Subject, name=name)
